@@ -70,6 +70,15 @@
       --c3-rgb: 194, 65, 12;
     }
 
+    [data-theme="red"] {
+      --c1: #fca5a5;
+      --c1-rgb: 252, 165, 165;
+      --c2: #ef4444;
+      --c2-rgb: 239, 68, 68;
+      --c3: #b91c1c;
+      --c3-rgb: 185, 28, 28;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -526,6 +535,7 @@
     .theme-btn[data-theme="pink"]   { background: #ec4899; }
     .theme-btn[data-theme="green"]  { background: #22c55e; }
     .theme-btn[data-theme="orange"] { background: #f97316; }
+    .theme-btn[data-theme="red"]    { background: #ef4444; }
 
     .theme-btn .tooltip {
       position: absolute;
@@ -593,6 +603,7 @@
     <button class="theme-btn"        data-theme="pink"  role="radio" aria-checked="false" tabindex="-1"><span class="tooltip">Pink</span></button>
     <button class="theme-btn"        data-theme="green" role="radio" aria-checked="false" tabindex="-1"><span class="tooltip">Green</span></button>
     <button class="theme-btn"        data-theme="orange" role="radio" aria-checked="false" tabindex="-1"><span class="tooltip">Orange</span></button>
+    <button class="theme-btn"        data-theme="red"    role="radio" aria-checked="false" tabindex="-1"><span class="tooltip">Red</span></button>
   </div>
 
   <script>
