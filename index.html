@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoID Logo - Themes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700;800&family=Plus+Jakarta+Sans:wght@600;800&family=Space+Grotesk:wght@600;700&family=Sora:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0d14;
+      --gray-1: #d7d3de;
+      --gray-2: #8d8798;
+      --gray-3: #2b2733;
+      --bh-core: #07060a;
+      --bh-vignette: rgba(0,0,0,0.92);
+      --logo-font: "Oxanium", "Sora", "Space Grotesk", "Plus Jakarta Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+      --c1: #7dd3fc;
+      --c1-rgb: 125, 211, 252;
+      --c2: #0ea5e9;
+      --c2-rgb: 14, 165, 233;
+      --c3: #0369a1;
+      --c3-rgb: 3, 105, 161;
+    }
+
+    [data-theme="coral"] {
+      --c1: #FFB3B3;
+      --c1-rgb: 255, 179, 179;
+      --c2: #FF6B6B;
+      --c2-rgb: 255, 107, 107;
+      --c3: #CC4444;
+      --c3-rgb: 204, 68, 68;
+    }
+
+    [data-theme="purple"] {
+      --c1: #c4b5fd;
+      --c1-rgb: 196, 181, 253;
+      --c2: #8b5cf6;
+      --c2-rgb: 139, 92, 246;
+      --c3: #5b21b6;
+      --c3-rgb: 91, 33, 182;
+    }
+
+    [data-theme="pink"] {
+      --c1: #f9a8d4;
+      --c1-rgb: 249, 168, 212;
+      --c2: #ec4899;
+      --c2-rgb: 236, 72, 153;
+      --c3: #be185d;
+      --c3-rgb: 190, 24, 93;
+    }
+
+    [data-theme="green"] {
+      --c1: #86efac;
+      --c1-rgb: 134, 239, 172;
+      --c2: #22c55e;
+      --c2-rgb: 34, 197, 94;
+      --c3: #15803d;
+      --c3-rgb: 21, 128, 61;
+    }
+
+    [data-theme="orange"] {
+      --c1: #fdba74;
+      --c1-rgb: 253, 186, 116;
+      --c2: #f97316;
+      --c2-rgb: 249, 115, 22;
+      --c3: #c2410c;
+      --c3-rgb: 194, 65, 12;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(var(--c2-rgb), 0.12), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(var(--c3-rgb), 0.08), transparent 30%),
+        linear-gradient(135deg, #0b0a10, var(--bg));
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      position: relative;
+      transition: background 500ms ease;
+    }
+
+    .logo-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(18px, 2.6vw, 36px) clamp(22px, 3.4vw, 54px);
+      isolation: isolate;
+      z-index: 1;
+    }
+
+    .logo {
+      position: relative;
+      font-size: clamp(56px, 10vw, 120px);
+      font-weight: 800;
+      user-select: none;
+      -webkit-user-select: none;
+      letter-spacing: 0.14em;
+      text-transform: none;
+      color: var(--gray-1);
+      line-height: 1;
+      font-family: var(--logo-font);
+      text-shadow:
+        0 0 1px rgba(255,255,255,0.15),
+        0 0 18px rgba(var(--c2-rgb), 0.18),
+        0 0 42px rgba(var(--c3-rgb), 0.12);
+    }
+
+    .logo .v {
+      color: var(--gray-1);
+    }
+
+    @property --feed-angle {
+      syntax: '<angle>';
+      inherits: true;
+      initial-value: 0deg;
+    }
+
+    @property --fireA {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 0;
+    }
+
+    @property --fireB {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 0;
+    }
+
+    @property --fireC {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 0;
+    }
+
+    .logo .o {
+      position: relative;
+      display: inline-block;
+      width: 0.64em;
+      height: 0.64em;
+      vertical-align: -0.20em;
+      --feed-angle: 0deg;
+      --fireA: 0;
+      --fireB: 0;
+      --fireC: 0;
+      transition:
+        --fireA 760ms ease-out,
+        --fireB 760ms ease-out,
+        --fireC 760ms ease-out;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      transform: translateX(-0.045em) translateZ(0);
+      perspective: 900px;
+      transform-style: preserve-3d;
+    }
+
+    .logo .o.feeding {
+      --fireA: 1;
+      --fireB: 0.95;
+      --fireC: 0.62;
+    }
+
+    .logo .o::before {
+      content: "";
+      position: absolute;
+      inset: -0.38em;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(var(--c3-rgb), 0.18), transparent 70%),
+        conic-gradient(from var(--feed-angle),
+          rgba(var(--c2-rgb), var(--fireA)) 0deg,
+          rgba(var(--c1-rgb), var(--fireB)) 28deg,
+          rgba(var(--c3-rgb), var(--fireC)) 82deg,
+          transparent 130deg,
+          transparent 360deg);
+      transform: rotateX(68deg) translateZ(-0.08em);
+      filter: blur(0.085em) saturate(1.25);
+      transition: filter 760ms ease-out, opacity 760ms ease-out;
+      animation: waveColorMotion 5s infinite ease-in-out;
+      z-index: 0;
+
+      -webkit-mask: radial-gradient(circle, transparent 0 58%, #000 64%, #000 100%);
+              mask: radial-gradient(circle, transparent 0 58%, #000 64%, #000 100%);
+    }
+
+    .logo .o::after {
+      content: "";
+      position: absolute;
+      inset: 0.045em;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 42% 34%, rgba(255,255,255,0.10), transparent 28%),
+        radial-gradient(circle at 50% 55%, #000, var(--bh-core) 62%, var(--bh-vignette) 100%);
+      border: 0.065em solid transparent;
+      box-shadow:
+        0 0 0.16em 0.05em rgba(var(--c1-rgb), 0.10),
+        0 0 0.38em 0.09em rgba(var(--c2-rgb), 0.28),
+        0 0 0.62em 0.12em rgba(var(--c3-rgb), 0.22);
+      animation: neonGlow 3s infinite ease-in-out;
+      transform: translateZ(0.06em);
+      z-index: 1;
+    }
+
+    .logo .o.feeding::before {
+      animation:
+        waveColorMotion 5s infinite ease-in-out,
+        feedFlicker 520ms infinite ease-in-out;
+      filter: blur(0.13em) saturate(1.95) brightness(1.48);
+    }
+
+    @keyframes feedFlicker {
+      0%, 100% {
+        opacity: 0.9;
+        filter: blur(0.10em) saturate(2.0) brightness(1.6);
+      }
+      50% {
+        opacity: 1;
+        filter: blur(0.20em) saturate(3.0) brightness(2.2);
+      }
+    }
+
+    .logo .o.feeding::after {
+      animation:
+        neonGlow 3s infinite ease-in-out,
+        coreFlash 350ms ease-out;
+    }
+
+    @keyframes coreFlash {
+      0% {
+        box-shadow:
+          0 0 0.5em 0.2em rgba(255, 255, 255, 0.7),
+          0 0 1.0em 0.4em rgba(var(--c2-rgb), 0.7),
+          0 0 1.5em 0.5em rgba(var(--c3-rgb), 0.5);
+      }
+      100% {
+        box-shadow:
+          0 0 0.18em 0.06em rgba(var(--c1-rgb), 0.10),
+          0 0 0.42em 0.10em rgba(var(--c2-rgb), 0.28),
+          0 0 0.70em 0.14em rgba(var(--c3-rgb), 0.22);
+      }
+    }
+
+    @keyframes neonGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 0.18em 0.06em rgba(var(--c1-rgb), 0.10),
+          0 0 0.42em 0.10em rgba(var(--c2-rgb), 0.28),
+          0 0 0.70em 0.14em rgba(var(--c3-rgb), 0.22);
+      }
+      50% {
+        box-shadow:
+          0 0 0.24em 0.08em rgba(var(--c1-rgb), 0.16),
+          0 0 0.52em 0.13em rgba(var(--c2-rgb), 0.40),
+          0 0 0.86em 0.18em rgba(var(--c3-rgb), 0.30);
+      }
+    }
+
+    @keyframes waveColorMotion {
+      0% {
+        transform: rotateX(68deg) translateZ(-0.08em) scale(1);
+        background:
+          radial-gradient(circle, rgba(var(--c3-rgb), 0.18), transparent 70%),
+          conic-gradient(from var(--feed-angle),
+            rgba(var(--c2-rgb), var(--fireA)) 0deg,
+            rgba(var(--c1-rgb), var(--fireB)) 28deg,
+            rgba(var(--c3-rgb), var(--fireC)) 82deg,
+            transparent 130deg,
+            transparent 360deg);
+      }
+      25% {
+        transform: rotateX(68deg) translateZ(-0.08em) scale(1.08);
+        background:
+          radial-gradient(circle, rgba(var(--c2-rgb), 0.26), transparent 70%),
+          conic-gradient(from var(--feed-angle),
+            rgba(var(--c2-rgb), var(--fireA)) 0deg,
+            rgba(var(--c1-rgb), var(--fireB)) 28deg,
+            rgba(var(--c3-rgb), var(--fireC)) 82deg,
+            transparent 130deg,
+            transparent 360deg);
+      }
+      50% {
+        transform: rotateX(68deg) translateZ(-0.08em) scale(1.14);
+        background:
+          radial-gradient(circle, rgba(var(--c1-rgb), 0.22), transparent 70%),
+          conic-gradient(from var(--feed-angle),
+            rgba(var(--c2-rgb), var(--fireA)) 0deg,
+            rgba(var(--c1-rgb), var(--fireB)) 28deg,
+            rgba(var(--c3-rgb), var(--fireC)) 82deg,
+            transparent 130deg,
+            transparent 360deg);
+      }
+      75% {
+        transform: rotateX(68deg) translateZ(-0.08em) scale(1.08);
+        background:
+          radial-gradient(circle, rgba(var(--c2-rgb), 0.26), transparent 70%),
+          conic-gradient(from var(--feed-angle),
+            rgba(var(--c2-rgb), var(--fireA)) 0deg,
+            rgba(var(--c1-rgb), var(--fireB)) 28deg,
+            rgba(var(--c3-rgb), var(--fireC)) 82deg,
+            transparent 130deg,
+            transparent 360deg);
+      }
+      100% {
+        transform: rotateX(68deg) translateZ(-0.08em) scale(1);
+        background:
+          radial-gradient(circle, rgba(var(--c3-rgb), 0.18), transparent 70%),
+          conic-gradient(from var(--feed-angle),
+            rgba(var(--c2-rgb), var(--fireA)) 0deg,
+            rgba(var(--c1-rgb), var(--fireB)) 28deg,
+            rgba(var(--c3-rgb), var(--fireC)) 82deg,
+            transparent 130deg,
+            transparent 360deg);
+      }
+    }
+
+    .logo .i {
+      color: var(--gray-2);
+    }
+
+    .logo .d {
+      background: linear-gradient(180deg, var(--c2), var(--c3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+              background-clip: text;
+              color: transparent;
+      text-shadow: none;
+    }
+
+    .voice-scene {
+      position: fixed;
+      inset: 0;
+      pointer-events: auto;
+      z-index: 0;
+      opacity: 0.85;
+      overflow: hidden;
+    }
+
+    .audio-wave {
+      --rot: 0deg;
+      --sx: 1;
+      --sy: 1;
+      --gapMul: 1;
+      --barMul: 1;
+      --lineA: 0.14;
+      --swallow: 1;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(var(--rot)) scaleX(var(--sx)) scaleY(var(--sy)) scale(var(--swallow));
+      display: flex;
+      align-items: center;
+      gap: calc(clamp(3px, 0.45vw, 7px) * var(--gapMul));
+      height: clamp(18px, 2.6vw, 44px);
+      padding: 0;
+      isolation: isolate;
+      will-change: transform, left, top;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .audio-wave:active {
+      cursor: grabbing;
+    }
+
+    .audio-wave::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 2px;
+      transform: translateY(-50%);
+      border-radius: 999px;
+      background: rgba(215, 211, 222, var(--lineA));
+      z-index: 0;
+    }
+
+    .audio-wave span {
+      display: block;
+      width: calc(clamp(3px, 0.45vw, 6px) * var(--barMul));
+      height: var(--h, 10px);
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--c1), var(--c2));
+      opacity: 0.62;
+      transform-origin: 50% 50%;
+      position: relative;
+      z-index: 1;
+      animation: barWave var(--dur, 1.1s) ease-in-out infinite;
+      animation-delay: var(--delay, 0ms);
+      transition: background 500ms ease;
+    }
+
+    @keyframes barWave {
+      0%, 100% { transform: scaleY(0.55); opacity: 0.35; }
+      50% { transform: scaleY(1.00); opacity: 0.78; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .audio-wave span {
+        animation: none;
+        transform: scaleY(0.7);
+        opacity: 0.55;
+      }
+
+      .logo .o::before,
+      .logo .o::after {
+        animation: none;
+      }
+    }
+
+    .logo-wrap::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(var(--c2-rgb), 0.22), transparent 68%);
+      filter: blur(16px);
+      z-index: -2;
+      transition: background 500ms ease;
+    }
+
+    .swallow-ring {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 999;
+      transform: translate(-50%, -50%);
+      border-style: solid;
+      border-color: rgba(var(--c2-rgb), 0.8);
+      animation: ringExpand 350ms ease-out forwards;
+      will-change: width, height, opacity, border-width;
+      box-shadow:
+        0 0 14px rgba(var(--c2-rgb), 0.5),
+        inset 0 0 14px rgba(var(--c2-rgb), 0.3);
+    }
+
+    @keyframes ringExpand {
+      0% {
+        width: 2px;
+        height: 2px;
+        opacity: 1;
+        border-width: 4px;
+      }
+      100% {
+        width: var(--ring-size, 260px);
+        height: var(--ring-size, 260px);
+        opacity: 0;
+        border-width: 0px;
+      }
+    }
+
+    .badge {
+      padding: 18px 26px;
+      border: 1px solid rgba(215, 211, 222, 0.08);
+      border-radius: 28px;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.01)
+      );
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04),
+        0 12px 40px rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    /* === Theme Switcher === */
+    .theme-switcher {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 14px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: rgba(15, 13, 20, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(215, 211, 222, 0.08);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+
+    .theme-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+      outline: none;
+      position: relative;
+    }
+
+    .theme-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .theme-btn:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.5);
+      outline-offset: 3px;
+    }
+
+    .theme-btn.active {
+      border-color: #fff;
+      box-shadow: 0 0 12px rgba(255,255,255,0.25);
+      transform: scale(1.15);
+    }
+
+    .theme-btn[data-theme="blue"]   { background: #0ea5e9; }
+    .theme-btn[data-theme="coral"]  { background: #FF6B6B; }
+    .theme-btn[data-theme="purple"] { background: #8b5cf6; }
+    .theme-btn[data-theme="pink"]   { background: #ec4899; }
+    .theme-btn[data-theme="green"]  { background: #22c55e; }
+    .theme-btn[data-theme="orange"] { background: #f97316; }
+
+    .theme-btn .tooltip {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) scale(0.8);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease, transform 200ms ease;
+    }
+
+    .theme-btn:hover .tooltip {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+  </style>
+</head>
+<body data-theme="blue">
+  <div class="voice-scene" aria-hidden="true"></div>
+  <div class="logo-wrap">
+    <div class="logo" aria-label="VoID">
+      <span class="v">V</span><span class="o">o</span><span class="i">I</span><span class="d">D</span>
+    </div>
+  </div>
+
+  <div class="theme-switcher" role="radiogroup" aria-label="Color theme">
+    <button class="theme-btn active" data-theme="blue"  role="radio" aria-checked="true"  tabindex="0"><span class="tooltip">Blue</span></button>
+    <button class="theme-btn"        data-theme="coral" role="radio" aria-checked="false" tabindex="-1"><span class="tooltip">Coral</span></button>
+    <button class="theme-btn"        data-theme="purple" role="radio" aria-checked="false" tabindex="-1"><span class="tooltip">Purple</span></button>
+    <button class="theme-btn"        data-theme="pink"  role="radio" aria-checked="false" tabindex="-1"><span class="tooltip">Pink</span></button>
+    <button class="theme-btn"        data-theme="green" role="radio" aria-checked="false" tabindex="-1"><span class="tooltip">Green</span></button>
+    <button class="theme-btn"        data-theme="orange" role="radio" aria-checked="false" tabindex="-1"><span class="tooltip">Orange</span></button>
+  </div>
+
+  <script>
+    (function () {
+      const scene = document.querySelector('.voice-scene');
+      const logoWrap = document.querySelector('.logo-wrap');
+      const hole = document.querySelector('.logo .o');
+      if (!scene || !logoWrap) return;
+
+      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let feedTimer = 0;
+
+      function rand(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function getLogoCenter() {
+        const rect = logoWrap.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        };
+      }
+
+      function getHoleCenter() {
+        const rect = hole ? hole.getBoundingClientRect() : logoWrap.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+          r: Math.min(rect.width, rect.height) / 2
+        };
+      }
+
+      function triggerFeedArc(angleDeg) {
+        if (!hole) return;
+        hole.style.setProperty('--feed-angle', `${angleDeg.toFixed(1)}deg`);
+        hole.classList.add('feeding');
+
+        window.clearTimeout(feedTimer);
+        const ttl = prefersReducedMotion ? 0 : 520;
+        feedTimer = window.setTimeout(() => hole.classList.remove('feeding'), ttl);
+      }
+
+      function getCSVar(name) {
+        return getComputedStyle(document.body).getPropertyValue(name).trim();
+      }
+
+      function makeWaveCluster() {
+        const wave = document.createElement('div');
+        wave.className = 'audio-wave';
+
+        const bars = Math.floor(rand(9, 17));
+
+        const gapMul = rand(0.75, 1.35);
+        const barMul = rand(0.85, 1.25);
+        const sx = rand(0.72, 1.55);
+        const sy = rand(0.85, 1.25);
+        const lineA = rand(0.08, 0.18);
+        wave.style.setProperty('--gapMul', gapMul.toFixed(2));
+        wave.style.setProperty('--barMul', barMul.toFixed(2));
+        wave.style.setProperty('--sx', sx.toFixed(2));
+        wave.style.setProperty('--sy', sy.toFixed(2));
+        wave.style.setProperty('--lineA', lineA.toFixed(2));
+
+        const edgeFloorPx = rand(1.5, 3.2);
+        const peakPx = rand(14, 28);
+        const pow = rand(0.85, 1.55);
+        const skew = rand(-0.22, 0.22);
+
+        for (let i = 0; i < bars; i++) {
+          const bar = document.createElement('span');
+
+          const t = bars === 1 ? 0.5 : i / (bars - 1);
+          const skewedT = Math.max(0, Math.min(1, t + skew * (t * (1 - t)) * 2));
+          const envelope = Math.pow(Math.sin(Math.PI * skewedT), pow);
+
+          const ripple = 1 + Math.sin((t * Math.PI * 4) + rand(-0.35, 0.35)) * 0.06;
+          const jitter = rand(0.88, 1.10) * ripple;
+          const basePx = edgeFloorPx + envelope * (peakPx - edgeFloorPx) * jitter;
+          const heightPx = Math.max(edgeFloorPx, Math.min(peakPx, basePx));
+          bar.style.setProperty('--h', `${heightPx.toFixed(1)}px`);
+
+          if (envelope < 0.22) {
+            bar.style.opacity = '0.28';
+          }
+
+          const dur = prefersReducedMotion ? 0 : rand(0.85, 1.25);
+          const delay = prefersReducedMotion ? 0 : rand(-500, 120);
+          bar.style.setProperty('--dur', `${dur.toFixed(2)}s`);
+          bar.style.setProperty('--delay', `${Math.round(delay)}ms`);
+
+          wave.appendChild(bar);
+        }
+
+        return wave;
+      }
+
+      const clusters = [];
+      const clusterCount = 26;
+
+      function registerCluster(c) {
+        const reuseIndex = clusters.findIndex((x) => x && x.dead);
+        if (reuseIndex >= 0) {
+          clusters[reuseIndex] = c;
+        } else {
+          clusters.push(c);
+        }
+      }
+
+      function spawnCluster(opts = {}) {
+        const { fromEdge = false } = opts;
+
+        const el = makeWaveCluster();
+        scene.appendChild(el);
+
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const center = getLogoCenter();
+
+        const rect = el.getBoundingClientRect();
+        const halfW = rect.width / 2;
+        const halfH = rect.height / 2;
+
+        let x;
+        let y;
+
+        if (fromEdge) {
+          const side = Math.floor(rand(0, 4));
+          if (side === 0) { x = halfW; y = rand(halfH, h - halfH); }
+          else if (side === 1) { x = w - halfW; y = rand(halfH, h - halfH); }
+          else if (side === 2) { x = rand(halfW, w - halfW); y = halfH; }
+          else { x = rand(halfW, w - halfW); y = h - halfH; }
+        } else {
+          const avoidRadius = Math.min(w, h) * 0.16;
+          x = rand(halfW, w - halfW);
+          y = rand(halfH, h - halfH);
+          let tries = 0;
+          while (tries < 10) {
+            const dx = x - center.x;
+            const dy = y - center.y;
+            if (Math.hypot(dx, dy) > avoidRadius) break;
+            x = rand(halfW, w - halfW);
+            y = rand(halfH, h - halfH);
+            tries++;
+          }
+        }
+
+        let speed;
+        let angle;
+        if (fromEdge) {
+          const dx = center.x - x;
+          const dy = center.y - y;
+          const baseAngle = Math.atan2(dy, dx);
+          angle = baseAngle + rand(-0.75, 0.75);
+          speed = rand(26, 62);
+        } else {
+          speed = rand(18, 42);
+          angle = rand(0, Math.PI * 2);
+        }
+        const vx = Math.cos(angle) * speed;
+        const vy = Math.sin(angle) * speed;
+
+        const phase = rand(0, Math.PI * 2);
+
+        const rotMix = rand(0.0, 1.0);
+        const rotOffset = rand(-35, 35);
+        const wobbleAmp = rand(0, 18);
+        const wobbleSpeed = rand(0.35, 1.10);
+
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+
+        const c = { el, x, y, vx, vy, phase, rotMix, rotOffset, wobbleAmp, wobbleSpeed, dragging: false, swallowing: false, dead: false };
+        registerCluster(c);
+        attachDrag(c);
+        return c;
+      }
+
+      function createSwallowEffect() {
+        const hc = getHoleCenter();
+        const c2 = getCSVar('--c2-rgb');
+        const c1 = getCSVar('--c1-rgb');
+        const c3 = getCSVar('--c3-rgb');
+
+        const rings = [
+          { color: 'rgba(255, 255, 255, 0.9)',     delay: 0,   size: 100 },
+          { color: `rgba(${c2}, 0.8)`,  delay: 30,  size: 180 },
+          { color: `rgba(${c1}, 0.5)`,  delay: 60,  size: 280 },
+          { color: `rgba(${c3}, 0.35)`, delay: 20,  size: 140 },
+          { color: 'rgba(255, 255, 255, 0.3)',     delay: 90,  size: 360 },
+        ];
+        for (const r of rings) {
+          const el = document.createElement('div');
+          el.className = 'swallow-ring';
+          el.style.cssText =
+            `left:${hc.x}px;top:${hc.y}px;border-color:${r.color};` +
+            `animation-delay:${r.delay}ms;--ring-size:${r.size}px`;
+          document.body.appendChild(el);
+          el.addEventListener('animationend', () => el.remove(), { once: true });
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        canvas.style.cssText = 'position:fixed;inset:0;z-index:998;pointer-events:none';
+        document.body.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        const cx = hc.x;
+        const cy = hc.y;
+        const maxDist = Math.max(canvas.width, canvas.height) * 0.75;
+
+        function drawBolt(x1, y1, x2, y2, thick, color, displace) {
+          if (displace < 3 || thick < 0.4) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = Math.max(0.3, thick);
+            ctx.shadowBlur = 16;
+            ctx.shadowColor = `rgba(${c2}, 0.6)`;
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+            return;
+          }
+          const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * displace;
+          const my = (y1 + y2) / 2 + (Math.random() - 0.5) * displace;
+          const nd = displace * 0.6;
+          drawBolt(x1, y1, mx, my, thick, color, nd);
+          drawBolt(mx, my, x2, y2, thick, color, nd);
+
+          if (thick > 1.2 && Math.random() > 0.45) {
+            const angle = Math.atan2(my - y1, mx - x1) + (Math.random() - 0.5) * 1.4;
+            const bd = displace * (0.25 + Math.random() * 0.4);
+            const bx = (x1 + mx) / 2 + (Math.random() - 0.5) * displace * 0.6;
+            const by = (y1 + my) / 2 + (Math.random() - 0.5) * displace * 0.6;
+            drawBolt(bx, by, bx + Math.cos(angle) * bd, by + Math.sin(angle) * bd, thick * 0.45, color, nd * 0.5);
+          }
+        }
+
+        const boltCount = 5 + Math.floor(Math.random() * 4);
+        for (let i = 0; i < boltCount; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const dist = maxDist * (0.35 + Math.random() * 0.65);
+          const ex = cx + Math.cos(angle) * dist;
+          const ey = cy + Math.sin(angle) * dist;
+          const thick = 1.5 + Math.random() * 3.5;
+          const alpha = 0.5 + Math.random() * 0.5;
+          drawBolt(cx, cy, ex, ey, thick, `rgba(${c1}, ${alpha})`, 50 + Math.random() * 50);
+        }
+
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 60);
+        grad.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
+        grad.addColorStop(0.5, `rgba(${c2}, 0.2)`);
+        grad.addColorStop(1, `rgba(${c2}, 0)`);
+        ctx.fillStyle = grad;
+        ctx.fillRect(cx - 60, cy - 60, 120, 120);
+
+        const fadeStart = performance.now();
+        function fadeCanvas(now) {
+          const p = Math.min(1, (now - fadeStart) / 350);
+          canvas.style.opacity = 1 - p;
+          if (p < 1) requestAnimationFrame(fadeCanvas);
+          else canvas.remove();
+        }
+        requestAnimationFrame(fadeCanvas);
+      }
+
+      function swallowCluster(c) {
+        if (!c || c.swallowing) return;
+        c.swallowing = true;
+        c.dragging = false;
+
+        const hc = getHoleCenter();
+        triggerFeedArc(Math.atan2(c.y - hc.y, c.x - hc.x) * (180 / Math.PI));
+        createSwallowEffect();
+        c.el.style.pointerEvents = 'none';
+        c.el.style.transition = prefersReducedMotion
+          ? 'none'
+          : 'left 520ms cubic-bezier(.2,.8,.2,1), top 520ms cubic-bezier(.2,.8,.2,1), transform 520ms cubic-bezier(.2,.8,.2,1), opacity 380ms ease-out';
+
+        c.x = hc.x;
+        c.y = hc.y;
+        c.el.style.left = `${c.x.toFixed(1)}px`;
+        c.el.style.top = `${c.y.toFixed(1)}px`;
+        c.el.style.setProperty('--swallow', '0.05');
+        c.el.style.opacity = '0';
+
+        const cleanup = () => {
+          c.el.removeEventListener('transitionend', cleanup);
+          c.dead = true;
+          c.el.remove();
+
+          if (scene.isConnected) {
+            const delay = prefersReducedMotion ? 0 : 120;
+            window.setTimeout(() => spawnCluster({ fromEdge: true }), delay);
+          }
+        };
+
+        if (prefersReducedMotion) {
+          cleanup();
+        } else {
+          c.el.addEventListener('transitionend', cleanup, { once: true });
+        }
+      }
+
+      function attachDrag(c) {
+        const el = c.el;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        el.addEventListener('pointerdown', (e) => {
+          if (c.swallowing) return;
+          c.dragging = true;
+          el.setPointerCapture(e.pointerId);
+          el.style.transition = 'none';
+          el.style.opacity = '';
+          el.style.setProperty('--swallow', '1');
+
+          offsetX = e.clientX - c.x;
+          offsetY = e.clientY - c.y;
+          e.preventDefault();
+        });
+
+        el.addEventListener('pointermove', (e) => {
+          if (!c.dragging || c.swallowing) return;
+
+          const w = window.innerWidth;
+          const h = window.innerHeight;
+          const rect = el.getBoundingClientRect();
+          const halfW = rect.width / 2;
+          const halfH = rect.height / 2;
+
+          let nx = e.clientX - offsetX;
+          let ny = e.clientY - offsetY;
+
+          nx = Math.max(halfW, Math.min(w - halfW, nx));
+          ny = Math.max(halfH, Math.min(h - halfH, ny));
+
+          c.x = nx;
+          c.y = ny;
+          el.style.left = `${c.x.toFixed(1)}px`;
+          el.style.top = `${c.y.toFixed(1)}px`;
+
+          const hc = getHoleCenter();
+          const dx = c.x - hc.x;
+          const dy = c.y - hc.y;
+          const dist = Math.hypot(dx, dy);
+          const threshold = (hc.r * 1.25) + Math.max(rect.width, rect.height) * 0.18;
+          if (dist <= threshold) {
+            swallowCluster(c);
+          }
+        });
+
+        const endDrag = () => {
+          if (!c.dragging) return;
+          c.dragging = false;
+        };
+
+        el.addEventListener('pointerup', endDrag);
+        el.addEventListener('pointercancel', endDrag);
+      }
+
+      function init() {
+        scene.replaceChildren();
+        clusters.length = 0;
+
+        for (let i = 0; i < clusterCount; i++) {
+          spawnCluster({ fromEdge: false });
+        }
+      }
+
+      function tick(t) {
+        if (prefersReducedMotion) return;
+
+        const time = t / 1000;
+        const dt = 1 / 60;
+        const center = getLogoCenter();
+        const holeC = getHoleCenter();
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+
+        for (const c of clusters) {
+          if (c.dead) continue;
+
+          const driftX = Math.sin(time * 0.9 + c.phase) * 6;
+          const driftY = Math.cos(time * 0.8 + c.phase) * 6;
+
+          if (!c.dragging && !c.swallowing) {
+            c.x += (c.vx * dt) + driftX * dt;
+            c.y += (c.vy * dt) + driftY * dt;
+          }
+
+          const rect = c.el.getBoundingClientRect();
+          const halfW = rect.width / 2;
+          const halfH = rect.height / 2;
+
+          if (!c.dragging && !c.swallowing) {
+            if (c.x - halfW < 0) { c.x = halfW; c.vx = Math.abs(c.vx); }
+            if (c.x + halfW > w) { c.x = w - halfW; c.vx = -Math.abs(c.vx); }
+            if (c.y - halfH < 0) { c.y = halfH; c.vy = Math.abs(c.vy); }
+            if (c.y + halfH > h) { c.y = h - halfH; c.vy = -Math.abs(c.vy); }
+          }
+
+          if (!c.dragging && !c.swallowing) {
+            const dxh = c.x - holeC.x;
+            const dyh = c.y - holeC.y;
+            const dist = Math.hypot(dxh, dyh) || 1;
+            const nx = dxh / dist;
+            const ny = dyh / dist;
+
+            const clusterR = Math.max(halfW, halfH);
+            const barrierR = holeC.r + clusterR * 0.22 + 8;
+            const influenceR = barrierR + Math.max(90, holeC.r * 2.2);
+
+            if (dist < influenceR) {
+              const p = 1 - (dist / influenceR);
+              const accel = 220 * p;
+              c.vx += nx * accel * dt;
+              c.vy += ny * accel * dt;
+
+              const tx = -ny;
+              const ty = nx;
+              const swirl = 90 * p;
+              c.vx += tx * swirl * dt;
+              c.vy += ty * swirl * dt;
+            }
+
+            if (dist < barrierR) {
+              c.x = holeC.x + nx * barrierR;
+              c.y = holeC.y + ny * barrierR;
+
+              const vn = (c.vx * nx) + (c.vy * ny);
+              if (vn < 0) {
+                const restitution = 0.75;
+                c.vx -= (1 + restitution) * vn * nx;
+                c.vy -= (1 + restitution) * vn * ny;
+              }
+            }
+          }
+
+          const dx = c.x - center.x;
+          const dy = c.y - center.y;
+          const angleToCenter = Math.atan2(dy, dx);
+          const radial = (angleToCenter * 180) / Math.PI;
+          const tangent = radial + 90;
+          const base = radial + (tangent - radial) * c.rotMix;
+          const wobble = Math.sin(time * c.wobbleSpeed + c.phase) * c.wobbleAmp;
+          const rot = base + c.rotOffset + wobble;
+          c.el.style.setProperty('--rot', `${rot.toFixed(2)}deg`);
+          if (!c.dragging && !c.swallowing) {
+            c.el.style.left = `${c.x.toFixed(1)}px`;
+            c.el.style.top = `${c.y.toFixed(1)}px`;
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      init();
+      if (!prefersReducedMotion) requestAnimationFrame(tick);
+      window.addEventListener('resize', init);
+
+      /* === Theme Switcher === */
+      const themeBtns = document.querySelectorAll('.theme-btn');
+      const body = document.body;
+
+      themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const theme = btn.getAttribute('data-theme');
+          body.setAttribute('data-theme', theme);
+
+          themeBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-checked', 'false');
+            b.setAttribute('tabindex', '-1');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-checked', 'true');
+          btn.setAttribute('tabindex', '0');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
