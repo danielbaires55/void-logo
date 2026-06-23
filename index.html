@@ -85,6 +85,7 @@
         linear-gradient(135deg, #0b0a10, var(--bg));
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
       position: relative;
+      overflow-x: hidden;
       transition: background 500ms ease;
     }
 
@@ -422,8 +423,8 @@
     .logo-wrap::before {
       content: "";
       position: absolute;
-      width: 220px;
-      height: 220px;
+      width: min(220px, 60vw);
+      height: min(220px, 60vw);
       border-radius: 50%;
       background: radial-gradient(circle, rgba(var(--c2-rgb), 0.22), transparent 68%);
       filter: blur(16px);
@@ -547,6 +548,34 @@
       opacity: 1;
       transform: translateX(-50%) scale(1);
     }
+
+    @media (max-width: 520px) {
+      .theme-switcher {
+        gap: 8px;
+        padding: 8px 12px;
+        bottom: 14px;
+      }
+      .theme-btn {
+        width: 24px;
+        height: 24px;
+      }
+      .theme-btn .tooltip {
+        display: none;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .theme-switcher {
+        gap: 5px;
+        padding: 6px 8px;
+        border-radius: 999px;
+      }
+      .theme-btn {
+        width: 20px;
+        height: 20px;
+        border-width: 1.5px;
+      }
+    }
   </style>
 </head>
 <body data-theme="blue">
@@ -662,7 +691,7 @@
       }
 
       const clusters = [];
-      const clusterCount = 26;
+      const clusterCount = window.innerWidth < 520 ? 12 : 26;
 
       function registerCluster(c) {
         const reuseIndex = clusters.findIndex((x) => x && x.dead);
