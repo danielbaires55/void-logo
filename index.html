@@ -95,6 +95,7 @@
       font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
       position: relative;
       overflow-x: hidden;
+      touch-action: manipulation;
       transition: background 500ms ease;
     }
 
@@ -377,10 +378,12 @@
       will-change: transform, left, top;
       cursor: grab;
       user-select: none;
+      touch-action: none;
     }
 
     .audio-wave:active {
       cursor: grabbing;
+      touch-action: none;
     }
 
     .audio-wave::before {
